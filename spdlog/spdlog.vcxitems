@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\async_logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\common.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\async_logger_impl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\async_log_helper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\file_helper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\logger_impl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\log_msg.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\mpmc_bounded_q.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\null_mutex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\os.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\pattern_formatter_impl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\registry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\details\spdlog_impl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\fmt\bundled\format.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\fmt\bundled\ostream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\fmt\bundled\printf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\fmt\fmt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\fmt\ostr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\formatter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\android_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\ansicolor_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\base_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\dist_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\file_sinks.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\msvc_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\null_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\ostream_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\stdout_sinks.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\syslog_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\sinks\wincolor_sink.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\spdlog.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)inc\tweakme.h" />
+  </ItemGroup>
+</Project>
