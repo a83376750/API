@@ -40,4 +40,14 @@ namespace thread_pool_task
 		std::cout << "Json_Task_start!!!\n";
 	}
 
+	FunctionManager::FunctionManager()
+	{
+
+	}
+
+	FunctionManager::~FunctionManager()
+	{
+
+	}
+
 }
