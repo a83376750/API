@@ -1,3 +1,9 @@
 testAPI/Debug/
 testAPI/x64/
 bin/
+.vs/API/v14/.suo
+API.opensdf
+API.sdf
+MySqlAPI/doc/mysql connector使用.bak
+MySqlAPI/doc/mysql connector使用.txt.bak
+MySqlAPI/doc/mysqlAPI使用.txt.bak

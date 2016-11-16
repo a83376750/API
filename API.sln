@@ -9,11 +9,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MySqlAPI", "MySqlAPI\MySqlA
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testAPI", "testAPI\testAPI.vcxproj", "{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreadPool", "ThreadPool\ThreadPool.vcxitems", "{C2DDF151-980A-49DA-91B7-75BFF03B1A2D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
 		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		ThreadPool\ThreadPool.vcxitems*{c2ddf151-980a-49da-91b7-75bff03b1a2d}*SharedItemsImports = 9
 		spdlog\spdlog.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
