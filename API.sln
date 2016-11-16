@@ -12,8 +12,8 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
-		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		spdlog\spdlog.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +25,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Debug|x64.ActiveCfg = Debug|x64
 		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Debug|x64.Build.0 = Debug|x64
+		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Debug|x64.Deploy.0 = Debug|x64
 		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Debug|x86.ActiveCfg = Debug|Win32
 		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Debug|x86.Build.0 = Debug|Win32
 		{58CFFB33-1E64-4228-8452-66F4BB1B8DBF}.Release|x64.ActiveCfg = Release|x64
