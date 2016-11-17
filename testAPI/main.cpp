@@ -23,7 +23,7 @@ void pushtask(std::shared_ptr<thread_pool::ThreadPool> ptr)
 	do 
 	{
 		cin >> i;
-		ptr->PushTask();
+		ptr->PushTask(mysql_test);
 	} while (i != 0);
 }
 

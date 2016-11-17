@@ -5,8 +5,14 @@ namespace thread_pool
 {
 	ThreadPool::ThreadPool()
 	{
+		max_thread_count_ = 10;
 	}
 
+
+	ThreadPool::ThreadPool(size_t max_thread_count)
+	{
+		max_thread_count_ = max_thread_count;
+	}
 
 	ThreadPool::~ThreadPool()
 	{
@@ -14,7 +20,7 @@ namespace thread_pool
 
 	void ThreadPool::StartThreadPool()
 	{
-		for (int i = 0; i < MAX_THREAD_COUNT; ++i)
+		for (int i = 0; i < max_thread_count_; ++i)
 			vec_threads_.emplace_back(&thread_pool::ThreadPool::TaskPolling, this);
 	}
 
@@ -42,10 +48,6 @@ namespace thread_pool
 		return vec_threads_.size();
 	}
 
-	void ThreadPool::PushTask()
-	{
-		function_manager_.PushFunction(fprint);
-	}
 
 }
 
