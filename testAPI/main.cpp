@@ -27,12 +27,17 @@ void pushtask(std::shared_ptr<thread_pool::ThreadPool> ptr)
 	} while (i != 0);
 }
 
-int main()
+void threadpool()
 {
 	std::shared_ptr<thread_pool::ThreadPool> ptr_pool = std::make_shared<thread_pool::ThreadPool>();
 	ptr_pool->StartThreadPool();
 	std::thread th(pushtask, ptr_pool);
 	th.join();
+}
+
+int main()
+{
+
 	getchar();
 	return 0;
 }

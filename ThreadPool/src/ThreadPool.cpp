@@ -5,17 +5,20 @@ namespace thread_pool
 {
 	ThreadPool::ThreadPool()
 	{
-		max_thread_count_ = 10;
+		max_thread_count_ = 4;
+		StartThreadPool();
 	}
 
 
 	ThreadPool::ThreadPool(size_t max_thread_count)
 	{
 		max_thread_count_ = max_thread_count;
+		StartThreadPool();
 	}
 
 	ThreadPool::~ThreadPool()
 	{
+
 	}
 
 	void ThreadPool::StartThreadPool()
@@ -31,16 +34,6 @@ namespace thread_pool
 			auto fun = function_manager_.PopFunction();
 			fun();
 		}
-			//function_manager_.PushFunction(fprint);
-			//thread_pool_task::Task *task = function_manager_.PopTask();
-			//if (task == nullptr)
-			//{
-			//	std::this_thread::sleep_for(std::chrono::seconds(1));
-			//}
-			//else
-			//{
-			//	task->StartTask();
-			//}
 	}
 
 	size_t ThreadPool::GetThreadCount() const
@@ -49,10 +42,4 @@ namespace thread_pool
 	}
 
 
-}
-
-
-void fprint()
-{
-	printf("hello threadID:%d\n", std::this_thread::get_id());
 }
