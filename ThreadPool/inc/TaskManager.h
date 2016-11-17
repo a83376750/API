@@ -44,8 +44,9 @@ namespace thread_pool_task
 		FunctionManager();
 		~FunctionManager();
 		typedef std::function<void()> void_function;
+
 		template<class F, class... Args>
-		auto PushFunction(F&& f, Args&&... args) ->std::future<decltype(f(args...))>
+		auto			PushFunction(F&& f, Args&&... args) ->std::future<decltype(f(args...))>
 		{
 			using ResType = decltype(f(args...));
 			auto task = std::make_shared<std::packaged_task<ResType()>>(
@@ -63,8 +64,7 @@ namespace thread_pool_task
 			std::future<ResType> future = task->get_future();
 			return future;
 		};
-		void_function PopFunction();
-
+		void_function	PopFunction();
 		void			CloseManager();
 	private:
 		bool							open_flag;

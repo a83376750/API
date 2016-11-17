@@ -52,10 +52,11 @@ namespace thread_pool_task
 	thread_pool_task::FunctionManager::void_function FunctionManager::PopFunction()
 	{
 		std::unique_lock<std::mutex> lock{ mutex_function_ };
-		cv_function_.wait(lock, [this]() 
-		{
-			return !queue_function_.empty() || !open_flag;
-		}
+		cv_function_.wait(
+			lock, [this]() 
+			{
+				return !queue_function_.empty() || !open_flag;
+			}
 		);
 
 		if (!open_flag)
