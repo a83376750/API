@@ -30,14 +30,16 @@ void pushtask(std::shared_ptr<thread_pool::ThreadPool> ptr)
 void threadpool()
 {
 	std::shared_ptr<thread_pool::ThreadPool> ptr_pool = std::make_shared<thread_pool::ThreadPool>();
-	ptr_pool->StartThreadPool();
 	std::thread th(pushtask, ptr_pool);
 	th.join();
+	printf("ptr_pool:%d\n", ptr_pool.use_count());
 }
 
 int main()
 {
-
+	threadpool();
 	getchar();
+	printf("end\n");
+	system("pause");
 	return 0;
 }

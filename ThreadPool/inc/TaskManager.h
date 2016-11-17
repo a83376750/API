@@ -64,10 +64,13 @@ namespace thread_pool_task
 			return future;
 		};
 		void_function PopFunction();
+
+		void			CloseManager();
 	private:
+		bool							open_flag;
+		std::condition_variable			cv_function_;
 		std::queue<void_function>		queue_function_;
 		std::mutex						mutex_function_;
-		std::condition_variable			cv_function_;
 	};
 
 

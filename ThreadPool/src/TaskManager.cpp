@@ -42,12 +42,11 @@ namespace thread_pool_task
 
 	FunctionManager::FunctionManager()
 	{
-
+		open_flag = true;
 	}
 
 	FunctionManager::~FunctionManager()
 	{
-
 	}
 
 	thread_pool_task::FunctionManager::void_function FunctionManager::PopFunction()
@@ -55,12 +54,22 @@ namespace thread_pool_task
 		std::unique_lock<std::mutex> lock{ mutex_function_ };
 		cv_function_.wait(lock, [this]() 
 		{
-			return !queue_function_.empty();
+			return !queue_function_.empty() || !open_flag;
 		}
 		);
+
+		if (!open_flag)
+			return NULL;
 		auto fun = std::move(queue_function_.front());
 		queue_function_.pop();
 		return fun;
+	}
+
+
+	void FunctionManager::CloseManager()
+	{
+		open_flag = false;
+		cv_function_.notify_all();
 	}
 
 }

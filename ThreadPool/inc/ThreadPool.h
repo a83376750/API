@@ -11,8 +11,7 @@ namespace thread_pool
 		ThreadPool();
 		ThreadPool(size_t max_thread_count);
 		~ThreadPool();
-		void	StartThreadPool();
-		void	TaskPolling();
+
 		size_t	GetThreadCount() const;
 
 		template<class F, class... Args>
@@ -21,12 +20,15 @@ namespace thread_pool
 			function_manager_.PushFunction(f, args...);
 		}
 	private:
-
+		void	StartThreadPool();
+		void	CloseThreadPool();
+		void	TaskPolling();
+	private:
 		thread_pool_task::FunctionManager	function_manager_;
 		std::vector<std::thread>			vec_threads_;
 		size_t								max_thread_count_;
+		bool								open_flag;
 	};
 
 }
 
-void fprint();
