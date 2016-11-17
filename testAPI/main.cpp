@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../MySqlAPI/inc/Syna_Mysql.h"
+#include "../ThreadPool/inc/ThreadPool.h"
 
 void mysql_test()
 {
@@ -16,7 +17,22 @@ void mysql_test()
 	sql.Query("syna", "select * from account");
 }
 
+void pushtask(std::shared_ptr<thread_pool::ThreadPool> ptr)
+{
+	int i = 0;
+	do 
+	{
+		cin >> i;
+		ptr->PushTask();
+	} while (i != 0);
+}
+
 int main()
 {
+	std::shared_ptr<thread_pool::ThreadPool> ptr_pool = std::make_shared<thread_pool::ThreadPool>();
+	ptr_pool->StartThreadPool();
+	std::thread th(pushtask, ptr_pool);
+	th.join();
+	getchar();
 	return 0;
 }

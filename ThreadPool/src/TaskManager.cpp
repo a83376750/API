@@ -30,7 +30,7 @@ namespace thread_pool_task
 		return task;
 	}
 
-	int TaskManager::GetTaskCount() const
+	size_t TaskManager::GetTaskCount() const
 	{
 		return queue_task_.size();
 	}
@@ -48,6 +48,19 @@ namespace thread_pool_task
 	FunctionManager::~FunctionManager()
 	{
 
+	}
+
+	thread_pool_task::FunctionManager::void_function FunctionManager::PopFunction()
+	{
+		std::unique_lock<std::mutex> lock{ mutex_function_ };
+		cv_function_.wait(lock, [this]() 
+		{
+			return !queue_function_.empty();
+		}
+		);
+		auto fun = std::move(queue_function_.front());
+		queue_function_.pop();
+		return fun;
 	}
 
 }

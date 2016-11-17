@@ -10,14 +10,18 @@ namespace thread_pool
 	public:
 		ThreadPool();
 		~ThreadPool();
-
+		void	StartThreadPool();
 		void	TaskPolling();
-		int		GetThreadCount() const;
+		size_t	GetThreadCount() const;
+		void	PushTask();
 	private:
 
-		thread_pool_task::TaskManager	task_manager_;
-		std::vector<std::thread>		vec_threads_;
-
+		//thread_pool_task::TaskManager	task_manager_;
+		thread_pool_task::FunctionManager	function_manager_;
+		std::vector<std::thread>			vec_threads_;
+		const size_t						MAX_THREAD_COUNT = 10;
 	};
 
 }
+
+void fprint();

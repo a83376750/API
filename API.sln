@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spdlog", "spdlog\spdlog.vcxitems", "{45D41ACC-2C3C-43D2-BC10-02AA73FFC7C7}"
 EndProject
@@ -13,11 +13,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreadPool", "ThreadPool\Th
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
-		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
-		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
-		ThreadPool\ThreadPool.vcxitems*{c2ddf151-980a-49da-91b7-75bff03b1a2d}*SharedItemsImports = 9
 		spdlog\spdlog.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
+		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
+		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		ThreadPool\ThreadPool.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		ThreadPool\ThreadPool.vcxitems*{c2ddf151-980a-49da-91b7-75bff03b1a2d}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
