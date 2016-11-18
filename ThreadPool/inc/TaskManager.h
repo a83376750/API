@@ -7,7 +7,7 @@
 namespace thread_pool_task
 {
 
-
+	//不使用
 	class Task
 	{
 	public:
@@ -16,6 +16,7 @@ namespace thread_pool_task
 		virtual void StartTask() = 0;
 	};
 
+	//不使用
 	class Json_Task : public Task
 	{
 	public:
@@ -24,6 +25,7 @@ namespace thread_pool_task
 		virtual void StartTask();
 	};
 
+	//不使用
 	class TaskManager
 	{
 	public:
@@ -67,7 +69,7 @@ namespace thread_pool_task
 		void_function	PopFunction();
 		void			CloseManager();
 	private:
-		bool							open_flag;
+		bool							open_flag_;
 		std::condition_variable			cv_function_;
 		std::queue<void_function>		queue_function_;
 		std::mutex						mutex_function_;

@@ -42,7 +42,7 @@ namespace thread_pool_task
 
 	FunctionManager::FunctionManager()
 	{
-		open_flag = true;
+		open_flag_ = true;
 	}
 
 	FunctionManager::~FunctionManager()
@@ -55,11 +55,11 @@ namespace thread_pool_task
 		cv_function_.wait(
 			lock, [this]() 
 			{
-				return !queue_function_.empty() || !open_flag;
+				return !queue_function_.empty() || !open_flag_;
 			}
 		);
 
-		if (!open_flag)
+		if (!open_flag_)
 			return NULL;
 		auto fun = std::move(queue_function_.front());
 		queue_function_.pop();
@@ -69,7 +69,7 @@ namespace thread_pool_task
 
 	void FunctionManager::CloseManager()
 	{
-		open_flag = false;
+		open_flag_ = false;
 		cv_function_.notify_all();
 	}
 

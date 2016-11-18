@@ -27,7 +27,7 @@ namespace thread_pool
 		thread_pool_task::FunctionManager	function_manager_;
 		std::vector<std::thread>			vec_threads_;
 		size_t								max_thread_count_;
-		bool								open_flag;
+		bool								open_flag_;
 	};
 
 }
