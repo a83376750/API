@@ -69,7 +69,7 @@ namespace thread_pool_task
 		void_function	PopFunction();
 		void			CloseManager();
 	private:
-		bool							open_flag_;
+		std::atomic<bool>				open_flag_;
 		std::condition_variable			cv_function_;
 		std::queue<void_function>		queue_function_;
 		std::mutex						mutex_function_;
