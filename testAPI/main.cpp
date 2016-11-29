@@ -35,11 +35,58 @@ void threadpool()
 	printf("ptr_pool:%d\n", ptr_pool.use_count());
 }
 
+int countdown(int from, int to)
+{
+	for (int i = from; i != to; --i)
+	{
+		std::cout << i << '\n';
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
+	std::cout << "Finished!\n";
+	return from - to;
+}
+
+void packageTest()
+{
+	std::packaged_task<int(int, int)> task(countdown); // 设置 packaged_task
+	std::future<int> ret = task.get_future(); // 获得与 packaged_task 共享状态相关联的 future 对象.
+	std::thread th(std::move(task), 10, 0);   //创建一个新线程完成计数任务.
+	int value = ret.get();                    // 等待任务完成并获取结果.
+	std::cout << "The countdown lasted for " << value << " seconds.\n";
+	th.join();
+}
+
+#include <iomanip>
+void showTimer()
+{
+	namespace chrono = std::chrono;
+
+	// Because c-style date&time utilities don't support microsecond precison,
+	// we have to handle it on our own.
+	auto time_now = chrono::system_clock::now();
+	auto duration_in_ms = chrono::duration_cast<chrono::milliseconds>(time_now.time_since_epoch());
+	auto ms_part = duration_in_ms - chrono::duration_cast<chrono::seconds>(duration_in_ms);
+
+	tm local_time_now;
+	time_t raw_time = chrono::system_clock::to_time_t(time_now);
+	_localtime64_s(&local_time_now, &raw_time);
+	std::cout << std::put_time(&local_time_now, "%Y%m%d %H:%M:%S,")
+		<< std::setfill('0') << std::setw(3) << ms_part.count();
+}
+
+#include "../MD5/inc/MD5.h"
 int main()
 {
-	threadpool();
-	getchar();
-	printf("end\n");
+	while (true)
+	{
+
+	unsigned char str[1024] = "";
+	std::cin >> str;
+	MD5 md5;
+	md5.GenerateMD5(str, 1024);
+	printf("%s\n", md5.ToString().c_str());
+	}
+
 	system("pause");
 	return 0;
 }
