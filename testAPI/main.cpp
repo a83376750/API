@@ -75,18 +75,57 @@ void showTimer()
 }
 
 #include "../MD5/inc/MD5.h"
-int main()
+void testMD5()
 {
 	while (true)
 	{
-
-	unsigned char str[1024] = "";
-	std::cin >> str;
-	MD5 md5;
-	md5.GenerateMD5(str, 1024);
-	printf("%s\n", md5.ToString().c_str());
+		unsigned char str[1024] = "";
+		std::cin >> str;
+		MD5 md5;
+		md5.GenerateMD5(str, 1024);
+		printf("%s\n", md5.ToString().c_str());
 	}
+}
 
+#include <fstream>
+int fileMD5()
+{
+	HANDLE hd = CreateFile(L"C:/Workspace/Project/main.cpp", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,
+		NULL,
+		OPEN_EXISTING,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL);
+	if (hd == INVALID_HANDLE_VALUE)
+	{
+		printf("%d\n", GetLastError());
+		return -1;
+	}
+	DWORD nSize = GetFileSize(hd, NULL);
+	HANDLE mapHD = CreateFileMapping(hd, NULL, PAGE_READWRITE, 0, nSize, L"main.cpp");
+	if (mapHD == NULL)
+	{
+		printf("%d\n", GetLastError());
+		return -2;
+	}
+	void* pvFile = MapViewOfFile(mapHD, FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, nSize);
+	if (pvFile == nullptr)
+	{
+		printf("%d\n", GetLastError());
+		return -3;
+	}
+	MD5 md5;
+	md5.GenerateMD5((unsigned char*)pvFile, nSize);
+	printf("MD5:%s\n", md5.ToString().c_str());
+}
+
+#include "../DataStruct/inc/DataStruct.h"
+int main()
+{
+	DataStruct::List<int> l;
+	int i[3] = { 1,2,3 };
+	l.pushback(i[0]);
+	l.pushback(i[1]);
+	l.pushback(i[2]);
 	system("pause");
 	return 0;
 }

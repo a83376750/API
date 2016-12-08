@@ -13,10 +13,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreadPool", "ThreadPool\Th
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MD5", "MD5\MD5.vcxitems", "{5B0DF9DD-6C7A-4F23-92D2-11FA4C24CD9A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataStruct", "DataStruct\DataStruct.vcxitems", "{3F64AFDD-CA9F-4167-A501-C697A3FCAA3E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DataStruct\DataStruct.vcxitems*{3f64afdd-ca9f-4167-a501-c697a3fcaa3e}*SharedItemsImports = 9
 		spdlog\spdlog.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
+		DataStruct\DataStruct.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		MD5\MD5.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
