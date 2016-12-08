@@ -21,6 +21,7 @@ namespace DataStruct
 		~List();
 
 		int			pushback(T data);
+		T			popback();
 		size_t		count()const {std::lock_guard<std::mutex> mtx{ _mutex };	return _size;}
 		T			operator[](const size_t index);
 	private:
@@ -47,6 +48,35 @@ namespace DataStruct
 		Node		*_Head;
 		size_t		_size;
 	};
+
+	template<class T>
+	T DataStruct::List<T>::popback()
+	{
+		size_t index = _size - 1;
+		try
+		{
+			if (index < 0)
+				throw _size;
+
+			T data = (*this)[index];
+			Node *last = listPrev(_Tail);
+			if (last == nullptr)
+				throw nullptr;
+			last->next = nullptr;
+			delete _Tail;
+			_Tail = last;
+			_size--;
+			return data;
+		}
+		catch (size_t &t)
+		{
+			std::cerr << "没有数据, 当前链表大小:" << t << std::endl;
+		}
+		catch (void *e)
+		{
+			std::cerr << "最后一个元素的前一个数据丢失" << std::endl;
+		}
+	}
 
 	template<class T>
 	T DataStruct::List<T>::operator[](const size_t index)

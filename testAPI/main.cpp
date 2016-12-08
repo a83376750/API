@@ -126,8 +126,10 @@ int main()
 	l.pushback(i[0]);
 	l.pushback(i[1]);
 	l.pushback(i[2]);
+	int p = l.popback();
+	printf("µ¯³öÊý¾Ý%d\n", p);
 
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		printf("%d\n", l[i]);
 	}
