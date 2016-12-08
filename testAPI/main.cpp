@@ -126,6 +126,11 @@ int main()
 	l.pushback(i[0]);
 	l.pushback(i[1]);
 	l.pushback(i[2]);
+
+	for (int i = 0; i < 3; ++i)
+	{
+		printf("%d\n", l[i]);
+	}
 	system("pause");
 	return 0;
 }

@@ -53,10 +53,18 @@ namespace DataStruct
 	{
 		try
 		{
-			if (_size <= index + 1)
+			if (_size < index + 1)
 			{
 				throw index;
 			}
+			Node *n = _Head;
+			for (int i = 0; i < index; ++i)
+			{
+				n = listNext(n);
+				if (n == nullptr)
+					throw i;
+			}
+			return n->data;
 		}
 		catch (size_t &t)
 		{
