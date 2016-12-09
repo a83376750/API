@@ -27,7 +27,7 @@ namespace DataStruct
 		T			front();
 		T			back();
 		size_t		count() {std::lock_guard<std::mutex> mtx{ _mutex };	return _size;}
-
+		void		clear();
 		T			operator[](const size_t index);
 	private:
 		Node*		listHead() {std::lock_guard<std::mutex> mtx{ _mutex };	return _Head;}
@@ -53,6 +53,12 @@ namespace DataStruct
 		Node		*_Head;
 		size_t		_size;
 	};
+
+	template<class T>
+	void DataStruct::List<T>::clear()
+	{
+
+	}
 
 	template<class T>
 	void DataStruct::List<T>::popfront()
@@ -146,20 +152,6 @@ namespace DataStruct
 				newNode->next = n;
 				n->prev = newNode;
 			}
-
-			//if (bf == nullptr)
-			//{
-			//	bf->next = newNode;
-			//	newNode->prev = bf;
-			//	newNode->next = after;
-			//}
-			//else
-			//{
-				//bf->next = newNode;
-				//newNode->prev = bf->next;
-				//newNode->next = n;
-				//n->prev = newNode;
-			//}
 			_size++;
 			return 0;
 		}
@@ -229,7 +221,7 @@ namespace DataStruct
 	{
 		_Head = nodeCreate();
 		_Tail = _Head;
-		_size = 1;
+		_size = 0;
 	}
 
 	template<class T>
@@ -265,23 +257,24 @@ namespace DataStruct
 		{
 			_Head->data = data;
 			_Tail = nullptr;
-			return;
-		}
-		
-		if (_Tail == nullptr)
-		{
-			_Tail = nodeCreate();
-			_Head->next = _Tail;
-			_Tail->prev = _Head;
-			_Tail->data = data;
-			_Tail->next = nullptr;
 		}
 		else
 		{
-			_Tail->next = nodeCreate();
-			_Tail->next->data = data;
-			_Tail->next->prev = _Tail;
-			_Tail = _Tail->next;
+			if (_Tail == nullptr)
+			{
+				_Tail = nodeCreate();
+				_Head->next = _Tail;
+				_Tail->prev = _Head;
+				_Tail->data = data;
+				_Tail->next = nullptr;
+			}
+			else
+			{
+				_Tail->next = nodeCreate();
+				_Tail->next->data = data;
+				_Tail->next->prev = _Tail;
+				_Tail = _Tail->next;
+			}
 		}
 		_size++;
 		return;
