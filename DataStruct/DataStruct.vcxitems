@@ -16,7 +16,4 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\DataStruct.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\DataStruct.cpp" />
-  </ItemGroup>
 </Project>

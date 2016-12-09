@@ -117,7 +117,7 @@ int fileMD5()
 	md5.GenerateMD5((unsigned char*)pvFile, nSize);
 	printf("MD5:%s\n", md5.ToString().c_str());
 }
-
+#include <list>
 #include "../DataStruct/inc/DataStruct.h"
 int main()
 {
@@ -126,13 +126,18 @@ int main()
 	l.pushback(i[0]);
 	l.pushback(i[1]);
 	l.pushback(i[2]);
-	int p = l.popback();
-	printf("弹出数据%d\n", p);
 
-	for (int i = 0; i < 2; ++i)
+	printf("头部数据%d\n", l.front());
+	printf("尾部数据%d\n", l.back());
+
+	l.insert(10, 0);
+	l.insert(12, 1);
+	for (int i = 0; i < l.count(); ++i)
 	{
 		printf("%d\n", l[i]);
 	}
+
+
 	system("pause");
 	return 0;
 }
