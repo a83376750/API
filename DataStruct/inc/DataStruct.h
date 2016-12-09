@@ -196,7 +196,7 @@ namespace DataStruct
 			std::cerr << "没有数据, 当前链表大小:" << t << std::endl;
 			exit(-1);
 		}
-		catch (void *e)
+		catch (...)
 		{
 			std::cerr << "最后一个元素的前一个数据丢失" << std::endl;
 			exit(-1);
@@ -223,7 +223,7 @@ namespace DataStruct
 		}
 		catch (size_t &t)
 		{
-			std::cerr << "越界,索引为:" << index << std::endl;
+			std::cerr << "越界,索引为:" << t << std::endl;
 			exit(-1);
 		}
 	}
