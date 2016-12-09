@@ -57,7 +57,18 @@ namespace DataStruct
 	template<class T>
 	void DataStruct::List<T>::clear()
 	{
-
+		if (_Head != nullptr)
+		{
+			Node *n;
+			for (int i = 0; i < count(); ++i)
+			{
+				n = listNext(_Head);
+				delete _Head;
+				_Head = n;
+			}
+		}
+		_Tail = nullptr;
+		_size = 0;
 	}
 
 	template<class T>
@@ -77,10 +88,11 @@ namespace DataStruct
 	void DataStruct::List<T>::pushfront(T data)
 	{
 		std::lock_guard<std::mutex> mtx{ _mutex };
-		if (_Head == _Tail)
+		if (_Head == nullptr)
 		{
+			_Head = nodeCreate();
 			_Head->data = data;
-			_Tail = nullptr;
+			_Tail = _Head;
 			return;
 		}
 		Node *n = nodeCreate();
@@ -217,11 +229,9 @@ namespace DataStruct
 	}
 
 	template<class T>
-	DataStruct::List<T>::List()
+	DataStruct::List<T>::List():_Head(nullptr), _Tail(nullptr), _size(0)
 	{
-		_Head = nodeCreate();
-		_Tail = _Head;
-		_size = 0;
+
 	}
 
 	template<class T>
@@ -253,10 +263,11 @@ namespace DataStruct
 	void DataStruct::List<T>::pushback(T data)
 	{
 		std::lock_guard<std::mutex> mtx{ _mutex };
-		if (_Head == _Tail)
+		if (_Head == nullptr)
 		{
+			_Head = nodeCreate();
 			_Head->data = data;
-			_Tail = nullptr;
+			_Tail = _Head;
 		}
 		else
 		{

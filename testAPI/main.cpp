@@ -137,6 +137,16 @@ int main()
 		printf("%d\n", l[i]);
 	}
 
+	l.clear();
+
+	l.pushback(i[0]);
+	l.pushback(i[1]);
+	l.pushback(i[2]);
+
+	for (int i = 0; i < l.count(); ++i)
+	{
+		printf("%d\n", l[i]);
+	}
 
 	system("pause");
 	return 0;
