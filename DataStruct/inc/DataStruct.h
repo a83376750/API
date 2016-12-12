@@ -26,14 +26,14 @@ namespace DataStruct
 		void		popback();
 		T			front();
 		T			back();
-		size_t		count() {std::lock_guard<std::mutex> mtx{ _mutex };	return _size;}
+		size_t		count() {std::lock_guard<std::mutex> mtx{ mutex_ };	return size_;}
 		void		clear();
 		T			operator[](const size_t index);
 	private:
-		Node*		listHead() {std::lock_guard<std::mutex> mtx{ _mutex };	return _Head;}
-		Node*		listTail() {std::lock_guard<std::mutex> mtx{ _mutex };	return _Tail;}
-		Node*		listNext(const Node *Current) {std::lock_guard<std::mutex> mtx{ _mutex };	return Current->next; }
-		Node*		listPrev(const Node *Current) {std::lock_guard<std::mutex> mtx{ _mutex };	return Current->prev; }
+		Node*		listHead() {std::lock_guard<std::mutex> mtx{ mutex_ };	return head_;}
+		Node*		listTail() {std::lock_guard<std::mutex> mtx{ mutex_ };	return tail_;}
+		Node*		listNext(const Node *Current) {std::lock_guard<std::mutex> mtx{ mutex_ };	return Current->next; }
+		Node*		listPrev(const Node *Current) {std::lock_guard<std::mutex> mtx{ mutex_ };	return Current->prev; }
 		Node*		nodeCreate() 
 		{
 			try 
@@ -48,59 +48,59 @@ namespace DataStruct
 			}
 		}
 	private:
-		std::mutex	_mutex;
-		Node		*_Tail;
-		Node		*_Head;
-		size_t		_size;
+		std::mutex	mutex_;
+		Node		*tail_;
+		Node		*head_;
+		size_t		size_;
 	};
 
 	template<class T>
 	void DataStruct::List<T>::clear()
 	{
-		if (_Head != nullptr)
+		if (head_ != nullptr)
 		{
 			Node *n;
 			for (int i = 0; i < count(); ++i)
 			{
-				n = listNext(_Head);
-				delete _Head;
-				_Head = n;
+				n = listNext(head_);
+				delete head_;
+				head_ = n;
 			}
 		}
-		_Tail = nullptr;
-		_size = 0;
+		tail_ = nullptr;
+		size_ = 0;
 	}
 
 	template<class T>
 	void DataStruct::List<T>::popfront()
 	{
-		if (_Head != nullptr)
+		if (head_ != nullptr)
 		{
-			Node *n = _Head->next;
-			delete _Head;
+			Node *n = head_->next;
+			delete head_;
 			n->prev = nullptr;
-			_Head = n;
-			_size--;
+			head_ = n;
+			size_--;
 		}
 	}
 
 	template<class T>
 	void DataStruct::List<T>::pushfront(T data)
 	{
-		std::lock_guard<std::mutex> mtx{ _mutex };
-		if (_Head == nullptr)
+		std::lock_guard<std::mutex> mtx{ mutex_ };
+		if (head_ == nullptr)
 		{
-			_Head = nodeCreate();
-			_Head->data = data;
-			_Tail = _Head;
+			head_ = nodeCreate();
+			head_->data = data;
+			tail_ = head_;
 			return;
 		}
 		Node *n = nodeCreate();
 		n->data = data;
-		n->next = _Head;
-		_Head->prev = n;
-		_Head = n;
-		_size++;
+		n->next = head_;
+		head_->prev = n;
+		head_ = n;
+		size_++;
 	}
 
 	template<class T>
@@ -108,11 +108,11 @@ namespace DataStruct
 	{
 		try
 		{
-			if (_size < 1)
-				throw _size;
-			if (_Head == nullptr)
+			if (size_ < 1)
+				throw size_;
+			if (head_ == nullptr)
 				throw nullptr;
-			return _Head->data;
+			return head_->data;
 		}
 		catch (size_t &t)
 		{
@@ -124,13 +124,13 @@ namespace DataStruct
 	template<class T>
 	void DataStruct::List<T>::popback()
 	{
-		if (_Tail != nullptr)
+		if (tail_ != nullptr)
 		{
-			Node *t = _Tail->prev;
-			_Tail->prev->next = nullptr;
-			delete _Tail;
-			_Tail = t;
-			_size--;
+			Node *t = tail_->prev;
+			tail_->prev->next = nullptr;
+			delete tail_;
+			tail_ = t;
+			size_--;
 		}
 	}
 
@@ -139,7 +139,7 @@ namespace DataStruct
 	{
 		try
 		{
-			Node *n = _Head;
+			Node *n = head_;
 			for (int i = 0; i < index; ++i)
 			{
 				n = listNext(n);
@@ -150,11 +150,11 @@ namespace DataStruct
 			Node *newNode = nodeCreate();
 			newNode->data = data;
 
-			if (n == _Head)
+			if (n == head_)
 			{
 				newNode->next = n;
 				n->prev = newNode;
-				_Head = newNode;
+				head_ = newNode;
 			}
 			else
 			{
@@ -164,7 +164,7 @@ namespace DataStruct
 				newNode->next = n;
 				n->prev = newNode;
 			}
-			_size++;
+			size_++;
 			return 0;
 		}
 		catch (const std::exception& e)
@@ -178,15 +178,15 @@ namespace DataStruct
 	template<class T>
 	T DataStruct::List<T>::back()
 	{
-		size_t index = _size - 1;
+		size_t index = size_ - 1;
 		try
 		{
 			if (index < 0)
-				throw _size;
-			if (_Tail == nullptr)
+				throw size_;
+			if (tail_ == nullptr)
 				throw nullptr;
-			T data = _Tail->data;
-			Node *last = listPrev(_Tail);
+			T data = tail_->data;
+			Node *last = listPrev(tail_);
 			if (last == nullptr)
 				throw nullptr;
 			return data;
@@ -208,11 +208,11 @@ namespace DataStruct
 	{
 		try
 		{
-			if (_size < index + 1)
+			if (size_ < index + 1)
 			{
 				throw index;
 			}
-			Node *n = _Head;
+			Node *n = head_;
 			for (int i = 0; i < index; ++i)
 			{
 				n = listNext(n);
@@ -229,7 +229,7 @@ namespace DataStruct
 	}
 
 	template<class T>
-	DataStruct::List<T>::List():_Head(nullptr), _Tail(nullptr), _size(0)
+	DataStruct::List<T>::List():head_(nullptr), tail_(nullptr), size_(0)
 	{
 
 	}
@@ -237,57 +237,57 @@ namespace DataStruct
 	template<class T>
 	DataStruct::List<T>::~List()
 	{
-		if (_Head == _Tail)
+		if (head_ == tail_)
 		{
-			delete _Head;
-			_Head = nullptr;
-			_Tail = nullptr;
+			delete head_;
+			head_ = nullptr;
+			tail_ = nullptr;
 		}
 		else
 		{
-			Node *cur = listNext(_Head);
+			Node *cur = listNext(head_);
 			if (cur != nullptr)
 			{
 				do
 				{
-					delete _Head;
-					_Head = cur;
-					cur = listNext(_Head);
+					delete head_;
+					head_ = cur;
+					cur = listNext(head_);
 				} while (cur != nullptr);
 			}
-			delete _Head;
+			delete head_;
 		}
 	}
 
 	template<class T>
 	void DataStruct::List<T>::pushback(T data)
 	{
-		std::lock_guard<std::mutex> mtx{ _mutex };
-		if (_Head == nullptr)
+		std::lock_guard<std::mutex> mtx{ mutex_ };
+		if (head_ == nullptr)
 		{
-			_Head = nodeCreate();
-			_Head->data = data;
-			_Tail = _Head;
+			head_ = nodeCreate();
+			head_->data = data;
+			tail_ = head_;
 		}
 		else
 		{
-			if (_Tail == nullptr)
+			if (tail_ == nullptr)
 			{
-				_Tail = nodeCreate();
-				_Head->next = _Tail;
-				_Tail->prev = _Head;
-				_Tail->data = data;
-				_Tail->next = nullptr;
+				tail_ = nodeCreate();
+				head_->next = tail_;
+				tail_->prev = head_;
+				tail_->data = data;
+				tail_->next = nullptr;
 			}
 			else
 			{
-				_Tail->next = nodeCreate();
-				_Tail->next->data = data;
-				_Tail->next->prev = _Tail;
-				_Tail = _Tail->next;
+				tail_->next = nodeCreate();
+				tail_->next->data = data;
+				tail_->next->prev = tail_;
+				tail_ = tail_->next;
 			}
 		}
-		_size++;
+		size_++;
 		return;
 	}
 
