@@ -53,14 +53,14 @@ namespace thread_pool_task
 	{
 		std::unique_lock<std::mutex> lock{ mutex_function_ };
 		cv_function_.wait(
-			lock, [this]() 
+			lock, [this]()
 			{
 				return !queue_function_.empty() || !open_flag_;
 			}
 		);
 
 		if (!open_flag_)
-			return NULL;
+			return nullptr;		//这里不能使用NULL,编译时会 /*未能使函数模板“unknown-type std::invoke(_Callable &&,_Types &&...)”专用化*/
 		auto fun = std::move(queue_function_.front());
 		queue_function_.pop();
 		return fun;
