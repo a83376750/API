@@ -1,5 +1,5 @@
 #include "..\inc\ThreadPool.h"
-
+#include <iostream>
 
 namespace thread_pool
 {
@@ -55,7 +55,8 @@ namespace thread_pool
 			if (fun)
 				fun();
 		}
-		printf("跳出循环 线程:%d\n", std::this_thread::get_id());
+		
+		std::cout << "跳出循环 线程:" << std::this_thread::get_id() << std::endl;
 	}
 
 	size_t ThreadPool::GetThreadCount() const
