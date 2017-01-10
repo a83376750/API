@@ -17,14 +17,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataStruct", "DataStruct\Da
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sort", "Sort\Sort.vcxitems", "{5093D1EE-A9AD-42FA-B369-CA078414F419}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StringBuilder", "StringBuilder\StringBuilder.vcxitems", "{0E5532A7-4AF7-4A02-B452-F7A380B4C88C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		StringBuilder\StringBuilder.vcxitems*{0e5532a7-4af7-4a02-b452-f7a380b4c88c}*SharedItemsImports = 9
 		MySqlAPI\MySqlAPI.vcxitems*{5540334b-cbaa-4ba7-a907-29ae3962aea4}*SharedItemsImports = 9
-		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
-		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		DataStruct\DataStruct.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
-		MD5\MD5.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		StringBuilder\StringBuilder.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		MySqlAPI\MySqlAPI.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		ThreadPool\ThreadPool.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		spdlog\spdlog.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
+		MD5\MD5.vcxitems*{58cffb33-1e64-4228-8452-66f4bb1b8dbf}*SharedItemsImports = 4
 		MD5\MD5.vcxitems*{5b0df9dd-6c7a-4f23-92d2-11fa4c24cd9a}*SharedItemsImports = 9
 		ThreadPool\ThreadPool.vcxitems*{c2ddf151-980a-49da-91b7-75bff03b1a2d}*SharedItemsImports = 9
 		Sort\Sort.vcxitems*{5093d1ee-a9ad-42fa-b369-ca078414f419}*SharedItemsImports = 9

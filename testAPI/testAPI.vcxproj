@@ -60,6 +60,7 @@
     <Import Project="..\ThreadPool\ThreadPool.vcxitems" Label="Shared" />
     <Import Project="..\MD5\MD5.vcxitems" Label="Shared" />
     <Import Project="..\DataStruct\DataStruct.vcxitems" Label="Shared" />
+    <Import Project="..\StringBuilder\StringBuilder.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
