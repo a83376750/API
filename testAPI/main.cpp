@@ -116,10 +116,12 @@ int fileMD5()
 	MD5 md5;
 	md5.GenerateMD5((unsigned char*)pvFile, nSize);
 	printf("MD5:%s\n", md5.ToString().c_str());
+	return 0;
 }
-#include <list>
+
+
 #include "../DataStruct/inc/DataStruct.h"
-int main()
+void listTest()
 {
 	DataStruct::List<int> l;
 	int i[3] = { 1,2,3 };
@@ -147,7 +149,91 @@ int main()
 	{
 		printf("%d\n", l[i]);
 	}
+}
 
+void g() noexcept
+{
+}
+void testThrow() noexcept(noexcept(g()))
+{
+	printf("hello world\n");
+	throw(123);
+}
+
+//noexcept 不抛出异常
+void testExcept()
+{
+	if (noexcept(testThrow()))
+	{
+		std::cout << "true" << std::endl;
+	}
+	else
+	{
+		std::cout << "false" << std::endl;
+	}
+}
+
+void findOneAndZero(string &str, int &OneCount, int &ZeroCount)
+{
+	const char *s = str.c_str();
+	int count = str.size();
+
+	for (int i = 0; i < count - 1; ++i)
+	{
+		if (s[i] == '0')
+		{
+			if (s[i + 1] == '1')
+			{
+				OneCount++;
+			}
+		}
+		else if (s[i] == '1')
+		{
+			if (s[i + 1] == '0')
+			{
+				ZeroCount++;
+			}
+		}
+
+	}
+}
+
+void testOneAndZero()
+{
+	string str = "1010101001111001010";
+	int one = 0, zero = 0;
+	findOneAndZero(str, one, zero);
+	cout << "one:" << one << endl;
+	cout << "zero:" << zero << endl;
+
+}
+
+//返回true 小端,则大端
+bool littleOrBigCPU()
+{
+	union w { int a; char b; };
+	w c;
+	c.a = 1;
+	return (c.b == 1);
+}
+
+
+#include "../StringBuilder/inc/StringBuilder.h"
+void testStringBuilder()
+{
+	StringBuilder sbuilder(10);
+	for (int i = 0; i < 10000; ++i)
+		sbuilder.append("hello");
+	std::cout << sbuilder.toString() << std::endl;
+}
+
+
+
+
+
+int main()
+{
+	testStringBuilder();
 	system("pause");
 	return 0;
 }
