@@ -16,7 +16,4 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\StringBuilder.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\StringBuilder.cpp" />
-  </ItemGroup>
 </Project>

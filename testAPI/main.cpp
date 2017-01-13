@@ -221,10 +221,10 @@ bool littleOrBigCPU()
 #include "../StringBuilder/inc/StringBuilder.h"
 void testStringBuilder()
 {
-	StringBuilder sbuilder(10);
+	StringBuilder<char> sbuilder(10);
 	for (int i = 0; i < 10000; ++i)
 		sbuilder.append("hello");
-	std::cout << sbuilder.toString() << std::endl;
+	std::cout << sbuilder.toString().c_str() << std::endl;
 }
 
 
