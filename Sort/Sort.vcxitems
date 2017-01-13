@@ -16,7 +16,4 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)inc\Sort.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\Sort.cpp" />
-  </ItemGroup>
 </Project>

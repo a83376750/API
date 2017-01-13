@@ -230,10 +230,15 @@ void testStringBuilder()
 
 
 
+#include "../Sort/inc/Sort.h"
+void testSort()
+{
+	Sort<int,10> s;
+}
 
 int main()
 {
-	testStringBuilder();
+	testSort();
 	system("pause");
 	return 0;
 }
